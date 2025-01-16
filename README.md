@@ -1,8 +1,8 @@
 # Active-Directory-Practice
 
-![image](https://github.com/WalterDotson02/Failed-RDP-Sentinel/blob/56ec5c86bafbb2068c9ff3f77360f91ff3fece60/Images/HoneyPot.png)
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/active_directory_diagram.jpg)
 
-Demonstration of 
+This repository offers a straightforward, step-by-step guide to setting up an Active Directory Domain Services (AD DS) environment in a home lab using Oracle VirtualBox. It walks you through the process of configuring a Windows Server 2019 virtual machine to act as a domain controller, so you can create a realistic, enterprise-level directory service for hands-on learning and testing.
 
 <h2>Description</h2>
 
@@ -55,15 +55,21 @@ Demonstration of
 * Continue until VM is created
   > We will change configuration in the Settings during the next step
 
-* Right Click our new VM <b>DC</b> 
+* Right Click our new VM <b>DC</b>
+* Click <b>Settings</b>
 * Select <b>Advanced</b>
 * Change <b>Shared Clipboard</b> and <b>Darg'n'Drop</b> to <b>Bidrectional</b>
   > Not necessary but allows a cleaner experience
+  
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Create%20Server%20VM%202.png)
+  
 * Select <b>Network</b>
 * Select <b>Adapter 2</b> 
 * Check the box for <b>Enable Network Adapter</b>
 * Select <b>Internal Network</b> from the drop-down menu for <b>Attached to</b>
 * Click <b>OK</b>
+
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Create%20Server%20VM%204.png)
 
 <h2>Step 4: Turn On VM and Login to Administrator Account </h2>
 
@@ -208,7 +214,7 @@ Demonstration of
 ![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Create%20Admin%20Account%204.png)
 
 * Make an account with your First and Last name
-* Change <b>User logon name</b> to "a-(first inital)(last name)
+* Change <b>User logon name</b> to "a-(first inital)(last name)"
   > ex: "a-mdotson"
 * Click <b>Next</b> 
 
@@ -275,135 +281,304 @@ Demonstration of
 ![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Add%20Remote%20Access%20Role%203.png) 
 
 
+* Click <b>Tools</b>
+* Click <b>Routing and Remote Access</b>
+
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Routing%20and%20Remote%20Access.png) 
+
+* Right click <b>DC (local)</b>
+* Click <b>Configure and Enable Routing and Remote Access</b>
+
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Routing%20and%20Remote%20Access%202.png)
+
+* Click the radio button for <b>Network address translation (NAT)</b>
+* Click <b>Next</b>
+
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Routing%20and%20Remote%20Access%203.png)
+
+* Click <b>_INTERNET_</b>
+* Click <b>Next</b>
+  > If radio button for <b>Use this public interface to connect to the Internet</b> is not available, sometimes it takes the previous step some time to sync so go back to the "Click <b>Tools</b>" step
+  
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Routing%20and%20Remote%20Access%204.png)
+
+* Click <b>Next</b>
+
+<h2>Step 10: Add and Configure DHCP Server Role</h2> 
+
+* Click <b>Add roles and freatures</b>
+
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Add%20role%20and%20Featues.png)
+  
+* Click <b>Next</b> 
+* Click <b>Next</b> 
+* Click <b>Next</b> 
+* On <b>Server Roles</b> click radio button for <b>DHCP Server</b>
+* Click <b>Add Features</b>
+* Click <b>Next</b>
+* Click <b>Next</b>
+* Click <b>Install</b>
+
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Add%20DHCP%20Role%202.png)
+  
+
+* Click <b>Tools</b>
+* Click <b>DHCP</b>
+
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Configure%20DHCP.png)
+
+* Click the carrot for <b>dc.mydomain</b> 
+* Right click <b>IPv4</b> 
+* Click <b>New Scope</b> 
+
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Configure%20DHCP%202.png)
+
+* Set <b>Name</b> to "172.1.0.100-200"
+* Click <b>Next</b>
+
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Configure%20DHCP%203.png)
+
+* Set <b>Start IP address</b> to "172.16.0.100"
+* Set <b>End IP address</b> to "172.16.0.200"
+  > This allows up to 101 IP addresses to be made
+* Set <b>Length</b> to "24"
+* Click <b>Next</b>
+
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Configure%20DHCP%204.png)
+
+* Click <b>Next</b>
+* Click <b>Next</b>
+* Click <b>Next</b>
+* Set <b>IP address</b> to "172.16.0.1"
+* Click <b>Add</b>
+* Click <b>Next</b>
+
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Configure%20DHCP%205.png)
+
+* Right click <b>dc.mydomain</b> 
+* Click <b>Authorize</b> 
+
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Configure%20DHCP%206.png)
+
+* Right click <b>dc.mydomain</b> 
+* Click <b>Refresh</b> 
+
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Configure%20DHCP%207.png)
+
+<h2>Step 12: Allow Browsing</h2> 
+
+  > You normally wouldn't allow browsing on an AD DS but it's needed to download the PowerShell script for this lab
 
 
+* Click <b>Configure this local server</b>
+
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Allow%20Browsing.png)
+
+* Click <b>Local Server</b>
+* Click <b>On</b> next to <b>IE Enhanced Security Configuration</b>
+* Click the radio button for <b>OFF</b> for <b>Administrators</b>
+* Click the radio button for <b>OFF</b> for <b>Users</b>
+* Click <b>OK</b>
+
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Allow%20Browsing%202.png)
 
 
+<h2>Step 13: Create User Accounts</h2>
 
+* Open <b>Internet Explorer</b>
+* Install <b>Microsoft Edge</b>
+  > Internet Explorer is no longer supported enough for next step
+  
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Install%20Edge.png)
 
+* Open [Create Accounts Script](https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbm1iamctOWJGSUk4ZU5Ec3h1bDA0QXRoM2dxZ3xBQ3Jtc0tsMVZmVDZ5bVJYT1ZwWDFaeUFDQ01uY3lJNE9YSF9zTDZuUGZFTHJQaE05Sm42T091UWw1UXdXTFg2VTRqMFZkOHIyOXpNMVktU0VNTWs4dFlJQmdVQ3JEd3g1YUMwR1FLQnBsRm9Wai1DSDkzMHBpcw&q=https%3A%2F%2Fgithub.com%2Fjoshmadakor1%2FAD_PS%2Farchive%2Frefs%2Fheads%2Fmaster.zip&v=MHsI8hJmggI)
+  > Script made by Josh Madakor
+  > This script will automate the creation of over 1000 user accounts
+* Download folder <b>AD_PS-master</b>
+* Extract folder <b>AD_PS-master</b> to Desktop
 
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Extract%20Script%20to%20Desktop.png)
 
+* Open <b>AD_PS-master</b>
+* Open <b>names</b> .txt file
+* Insert your name at top of the .txt file <b>Microsoft Edge</b>
 
-<h3>Sample</h3>
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Add%20name%20to%20note.png)
 
-* Select Sample log saved to Desktop (failed_rdp.log) and click <b>Next</b>
+* Click <b>Windows Start Button</b>
+* Click carrot for <b>Windows PowerShell</b>
+* Right click <b>Windows PowerShell ISE</b>
+* Click <b>More</b>
+* Click <b>Run as administrator</b>
 
-<h3>Record Delimiter</h3>
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Open%20PowerShell%20ISE.png)
 
-* Look over sample logs and click <b>Next</b>
+* Click <b>File</b>
+* Click <b>Open</b>
 
-<h3>Collection Paths</h3>
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Open%20PowerShell%20ISE%202.png)
 
-* Type: Windows
-* Path: "C:\ProgramData\failed_rdp.log
+* Click <b>Desktop</b>
+* Click <b>AD_PS-master</b>
 
-<h3>Details</h3>
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Open%20PowerShell%20ISE%203.png)
 
-* Name and describe the custom log (FAILED_RDP_WITH_GEO) before pressing the <b>Next</b> button
-* Click Create
+* Click <b>1_CREATE_USERS</b>
+* Click <b>Open</b>
 
-![image](https://github.com/WalterDotson02/Failed-RDP-Sentinel/blob/main/Images/custom_log.png)
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Open%20PowerShell%20ISE%204.png)
 
-<h2>Step 10: Query + Extract Fields from Custom Log</h2>
-
-* Navigate to the newly established workspace (honeypot-law) in Log Analytics Workspaces -> Logs
-* We then can run a query and extract the different data filtering by different fields such as latitude, longitude, destinationhost, etc.
-  > As of March 31st, 2023, Microsoft has disabled the creation of new custom fields and has migrated to KQL. You can learn more about it here
-* Copy/Paste the following query into the query window and Run Query
+* In the PowerShell Terminal run command: "Set-ExecutionPolicy Unrestricted"
 
 ```
-FAILED_RDP_WITH_GEO_CL 
-| extend username = extract(@"username:([^,]+)", 1, RawData),
-         timestamp = extract(@"timestamp:([^,]+)", 1, RawData),
-         latitude = extract(@"latitude:([^,]+)", 1, RawData),
-         longitude = extract(@"longitude:([^,]+)", 1, RawData),
-         sourcehost = extract(@"sourcehost:([^,]+)", 1, RawData),
-         state = extract(@"state:([^,]+)", 1, RawData),
-         label = extract(@"label:([^,]+)", 1, RawData),
-         destination = extract(@"destinationhost:([^,]+)", 1, RawData),
-         country = extract(@"country:([^,]+)", 1, RawData)
-| where destination != "samplehost"
-| where sourcehost != ""
-| summarize event_count=count() by timestamp, label, country, state, sourcehost, username, destination, longitude, latitude
-```
-> Kusto Query Language (KQL) is used to query and extract logs from data stored in Azure Log Analytics or Azure Data Explorer. KQL is a powerful and expressive query language that allows you to perform advanced data analysis, filtering, aggregation, and visualization. With some practice composing questions and simple instructions, the language is meant to be simple to read and use.
-
-![image](https://github.com/WalterDotson02/Failed-RDP-Sentinel/blob/main/Images/LAW%20KQL%20script%20for%20log.png)
-
-<h2>Step 11: Create World Attack Map in Microsoft Sentinel</h2>
-
-* Access Microsoft Sentinel to view the Overview page and available events
-* Click on Workbooks and <b>Add workbook</b> then click Edit
-* Delete default widgets (three dots -> remove)
-* Click <b>ADD</b>-><b>Add query</b>
-* You can Copy/Paste the previous query or this one into the query window and Run Query
+Set-ExecutionPolicy Unrestricted
 
 ```
-FAILED_RDP_WITH_GEO_CL 
-| extend username = extract(@"username:([^,]+)", 1, RawData),
-         timestamp = extract(@"timestamp:([^,]+)", 1, RawData),
-         latitude = extract(@"latitude:([^,]+)", 1, RawData),
-         longitude = extract(@"longitude:([^,]+)", 1, RawData),
-         sourcehost = extract(@"sourcehost:([^,]+)", 1, RawData),
-         state = extract(@"state:([^,]+)", 1, RawData),
-         label = extract(@"label:([^,]+)", 1, RawData),
-         destination = extract(@"destinationhost:([^,]+)", 1, RawData),
-         country = extract(@"country:([^,]+)", 1, RawData)
-| where destination != "samplehost"
-| where sourcehost != ""
-| summarize event_count=count() by latitude, longitude, sourcehost, label, destination, country
+
+* Click <b>Yes to All</b>
+
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Set%20ISE%20Unrestricted.png)
+
+* In the PowerShell Terminal run command: "cd C:\Users\[Admin User Logon Name]\Desktop\AD_PS-master"
+  > This changes the directory to folder <b>AD_PS-master</b> so the script can pull the names for the new user accounts
+
 ```
-* When results appear, select <b>Map</b> from the <b>Visualization</b> drop-down box.
-* Choose <b>Map Settings</b> to make additional adjustments
-  > Most settings should be auto-configured from the script above
-  
-![image](https://github.com/WalterDotson02/Failed-RDP-Sentinel/blob/main/Images/Sentinel%20KQL%20script.png)
+cd C:\Users\[Admin User Logon Name]\Desktop\AD_PS-master
 
-<b>Layout Settings</b>
+```
 
-* <b>Location info using</b>: Latitude/Longitude
-* <b>Latitude</b>: latitude
-* <b>Longitude</b>: longitude
-* <b>Size by</b>: event_count
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Change%20ISE%20Directory.png)
 
-<b>Color Settings</b>
+* Click the Green <b>Run Button</b>
+* Click <b>Run Once</b>
 
-* Coloring Type: Heatmap
-* <bColor by</b>: event_count
-* <b>Aggregation for color</b>: Sum of Values
-* </b>Color palette</b>: Green to Red
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Run%20ISE.png)
 
-<b>Metric Settings</b>
-
-* <b>Metric Label</b>: label
-* <b>Metric Value</b>: event_count
-* Click <b>Apply</b> button and <b>Save and Close</b>
-* Save as "Failed RDP International Map" in the same region and under the resource group (honeypot-lab)
-* Keep refreshing the map to show more inbound failed RDP attacks
-  > Note: Only unsuccessful RDP attempts will be shown on the map, not any additional attacks the VM might be facing.
-  
-  ![image](https://github.com/WalterDotson02/Failed-RDP-Sentinel/blob/main/Images/Failed%20RDP%20Map.png)
-
-  > Event Viewer showcasing failed RDP logon efforts. Event ID: 4625
-  
-  ![image](https://github.com/WalterDotson02/Failed-RDP-Sentinel/blob/main/Images/Event%20Manager.png)
-
-  > Data processing from a custom Poweshell script using a third party API
-  
-  ![image](https://github.com/WalterDotson02/Failed-RDP-Sentinel/blob/main/Images/ISE%20failed%20attempts.png)
-
-<h2>Step 12: Shut Down Resources</h2>.
-
-> CRUCIAL: DON'T SKIP !
-
-* Look for "Resource groups" -> name of resource group
-* Key in the name of the resource group (honeypot-lab) to verify removal of resources
-* Select the <b>Apply force delete for selected Virtual machines and Virtual machine scale sets</b> box
-* Click <b>Delete</b>
-
-![image](https://github.com/WalterDotson02/Failed-RDP-Sentinel/blob/main/Images/Screenshot%202025-01-14%20092133.png)
-
-> Resources will use free credits if they are not eliminated, and costs may start to accrue.
+* Wait for the script to finish creating the users
 
 
+* Click <b>Windows Start Button</b>
+* Click carrot for <b>Windows Administrative Tools</b>
+* Open <b>Active Directory Users and Computers</b>
+* Click carrot for <b>mydomain.com</b>
+* Open <b>_Users</b> Organizational Unit
+* Confirm that you can see the new user accounts
 
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Confirm%20Users%20were%20made.png)
+
+<h2>Step 14: Create Client VM</h2>
+
+* Open <b>Oracle VM VirtualBox Manager</b>
+* Click <b>New</b>
+* Name new VM "Client1"
+* Click <b>Next</b>
+
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Create%20Client%20VM.png)
+
+* Change <b>Base Memory</b> and <b>Processors</b> to an amount your computer can handle without taking too many resources
+
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Create%20Client%20VM%202.png)
+
+* Right click <b>Client1</b>
+* Click <b>Settings</b>
+
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Create%20Client%20VM%203.png)
+
+* Select <b>Advanced</b>
+* Change <b>Shared Clipboard</b> and <b>Darg'n'Drop</b> to <b>Bidrectional</b>
+  > Not necessary but allows a cleaner experience
+
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Create%20Client%20VM%204.png)
+
+* Select <b>Network</b>
+* Select <b>Internal Network</b> from the drop-down menu for <b>Attached to</b>
+* Click <b>OK</b>
+
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Create%20Client%20VM%205.png)
+
+<h2>Step 15: Install Windows 10</h2>
+
+
+* Turn On <b>DC</b> Virtual Machine
+* Select <b>Next</b>
+* Select <b>Other</b> from the drop down menu for <b>DVD</b>
+* Click <b>Windows10ISO</b> from where you stored the download
+* Click <b>Open</b>
+
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Create%20Client%20VM%206.png)
+
+* Select <b>Next</b>
+* Select <b>Install Now</b>
+* Select <b>I don't have a product key</b>
+
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Create%20Client%20VM%207.png)
+
+* Select <b>Windows 10 Pro</b>
+* Select <b>Next</b>
+
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Create%20Client%20VM%208.png)
+
+* Check the box for <b>I accept the license terms</b>
+* Select <b>Next</b>
+* Select <b>Custom: Install Windows only (advanced)</b>
+
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Create%20Client%20VM%209.png)
+
+* Select <b>Next</b>
+* Allow time for Installation
+  > Installation may take a while and will require a restart of the VM
+* Continue through Windows setup until the <b>How would you like to set up?</b> screen
+* Click <b>Set up for personal use</b>
+
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Create%20Client%20VM%2010.png)
+
+* Select <b>Offline account</b>
+
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Create%20Client%20VM%2011.png)
+
+* Select <b>Limited Experience</b>
+
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Create%20Client%20VM%2012.png)
+
+* Name Local account "user"
+* Click <b>Next</b>
+
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Create%20Client%20VM%2013.png)
+
+* Select <b>Next</b>
+  > There is no need for a password
+
+* Select <b>Accept</b> on <b>Choose privacy settings for your device</b> screen
+
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Create%20Client%20VM%2014.png)
+
+<h2>Step 16: Connect Client VM to Domain</h2>
+
+* Login to User Account
+
+* Open <b>Settings</b>
+* Click <b>About</b>
+* Click <b>Rename this PC (advanced)</b>
+* Click <b>Change</b>
+* Name <b>Computer name</b> "Client1"
+* Click radio button for <b>Domain</b>
+* Name <b>Domain</b> "mydomain.com"
+* Click <b>OK</b>
+
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Change%20Client%20PC%20name.png)
+
+* Enter <b>User Name</b> as [First Name Inital][Last Name]
+  > Example: mdotson
+* Enter <b>Password</b> as "Password1"
+* Click <b>OK</b>
+
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Login%20to%20Domain.png)
+
+* Click <b>OK</b>
+* Click <b>OK</b>
+* Click <b>Close</b>
+* Click <b>Restart Now</b>
+* Click <b>Other user</b> on login screen
+* Login in to recently created account 
+
+![image](https://github.com/WalterDotson02/Active-Directory-Practice/blob/main/images/Login%20to%20Domain%202.png)
